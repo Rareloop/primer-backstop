@@ -9,8 +9,9 @@ class BackstopCommand extends Command
 
     protected function startServer($output)
     {
-        $this->serverPID = shell_exec("nohup php -S 0.0.0.0:9000 " . __DIR__ . "/../../../../../../../server.php > /dev/null 2> /dev/null & echo $!");
-        $output->writeln('<info>Temporary server created http://localhost:9000</info>');
+        $this->serverPID = trim(shell_exec("nohup php -S 0.0.0.0:9000 " . __DIR__ . "/../../../../../../../server.php > /dev/null 2> /dev/null & echo $!"));
+
+        $output->writeln('<info>Temporary server created http://localhost:9000 [Process: ' . $this->serverPID . ']</info>');
     }
 
     protected function stopServer()
