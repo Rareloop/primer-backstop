@@ -65,7 +65,7 @@ var patterns = [];
 patterns.forEach(function(pattern) {
     config.scenarios.push({
       'label': pattern,
-      'url': 'http://localhost:8080/patterns/' + pattern + '?minimal',
+      'url': 'http://localhost:9000/patterns/' + pattern + '?minimal',
       'hideSelectors': [],
       'readyEvent': null,
       'delay': 500,
