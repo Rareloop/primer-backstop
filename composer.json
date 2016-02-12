@@ -1,0 +1,19 @@
+{
+    "name": "rareloop/primer-backstop",
+    "description": "Regression testing for Primer",
+    "authors": [
+        {
+            "name": "Joe Lambert",
+            "email": "joe@rareloop.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rareloop\\Primer\\Backstop": "src/Primer/Backstop"
+        }
+    },
+    "minimum-stability": "stable"
+}
