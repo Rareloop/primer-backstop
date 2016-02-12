@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Rareloop\\Primer\\Backstop": "src/Primer/Backstop"
+            "Rareloop\\Primer\\Backstop\\": "src/Primer/Backstop"
         }
     },
     "minimum-stability": "stable"
