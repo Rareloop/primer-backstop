@@ -15,5 +15,8 @@
             "Rareloop\\Primer\\Backstop\\": "src/Primer/Backstop"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "post-install-cmd": [
+        "npm install"
+    ]
 }
