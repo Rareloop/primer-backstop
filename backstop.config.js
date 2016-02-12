@@ -48,30 +48,21 @@ var fs = require('fs');
 
 // Build a list of the patterns
 var basePath = '../../../../../patterns/';
-var patterns = [];
-
-['elements', 'components'].forEach(function(type) {
-    fs.readdirSync(basePath + type).forEach(function(group) {
-        if (group.substring(0, 1) !== '.') {
-            fs.readdirSync(basePath + type + '/' + group).forEach(function(name) {
-                if (name.substring(0, 1) !== '.') {
-                    patterns.push(type + '/' + group + '/' + name);
-                }
-            });
-        }
-    });
-});
+var patterns = JSON.parse(fs.readFileSync(basePath + '/../backstop/urls.json', 'utf8'));
+var hash = '';
 
 patterns.forEach(function(pattern) {
     config.scenarios.push({
       'label': pattern,
       'url': 'http://localhost:9000/patterns/' + pattern + '?minimal',
-      'hideSelectors': [],
+      'hideSelectors': [
+        'img[src*=lorempixel]'
+      ],
       'readyEvent': null,
       'delay': 500,
-      'misMatchThreshold' : 0.1
-      // 'onBeforeScript': 'onBefore.js',
-      // 'onReadyScript': 'onReady.js'
+      'misMatchThreshold' : 0.1,
+      'onBeforeScript': 'onBefore.js',
+      'onReadyScript': 'onReady.js'
     });
 });
 
