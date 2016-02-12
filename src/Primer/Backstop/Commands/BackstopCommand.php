@@ -9,7 +9,7 @@ class BackstopCommand extends Command
 
     protected function startServer($output)
     {
-        $this->serverPID = shell_exec("nohup php -S 0.0.0.0:9000 " . __DIR__ . "/../../../server.php > /dev/null 2> /dev/null & echo $!");
+        $this->serverPID = shell_exec("nohup php -S 0.0.0.0:9000 " . __DIR__ . "/../../../../../../../server.php > /dev/null 2> /dev/null & echo $!");
         $output->writeln('<info>Temporary server created http://localhost:9000</info>');
     }
 
@@ -25,6 +25,6 @@ class BackstopCommand extends Command
 
     protected function runGulpCommand($command)
     {
-        system('cd ' . __DIR__ . '/../../node_modules/backstopjs && gulp ' . $command. ' --backstopConfigFilePath=' . $this->configPath());
+        system('cd ' . __DIR__ . '/../../../../node_modules/backstopjs && gulp ' . $command. ' --backstopConfigFilePath=' . $this->configPath());
     }
 }

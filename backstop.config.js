@@ -37,17 +37,17 @@ var config = {
 
     scenarios: [],
     paths: {
-        bitmaps_reference: '../../backstop_data/bitmaps_reference',
-        bitmaps_test: '../../backstop_data/bitmaps_test',
-        compare_data: '../../backstop_data/bitmaps_test/compare.json',
-        casper_scripts: '../../backstop_data/casper_scripts'
+        bitmaps_reference: '../../../../../backstop/bitmaps_reference',
+        bitmaps_test: '../../../../../backstop/bitmaps_test',
+        compare_data: '../../../../../backstop/bitmaps_test/compare.json',
+        casper_scripts: '../../../../../backstop/casper_scripts'
     }
 };
 
 var fs = require('fs');
 
 // Build a list of the patterns
-var basePath = '../../../patterns/';
+var basePath = '../../../../../patterns/';
 var patterns = [];
 
 ['elements', 'components'].forEach(function(type) {
@@ -69,9 +69,9 @@ patterns.forEach(function(pattern) {
       'hideSelectors': [],
       'readyEvent': null,
       'delay': 500,
-      'misMatchThreshold' : 0.1,
-      'onBeforeScript': 'onBefore.js',
-      'onReadyScript': 'onReady.js'
+      'misMatchThreshold' : 0.1
+      // 'onBeforeScript': 'onBefore.js',
+      // 'onReadyScript': 'onReady.js'
     });
 });
 
