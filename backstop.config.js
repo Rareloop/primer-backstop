@@ -54,7 +54,7 @@ var hash = '';
 patterns.forEach(function(pattern) {
     config.scenarios.push({
       'label': pattern,
-      'url': 'http://localhost:9000/patterns/' + pattern + '?minimal',
+      'url': 'http://localhost:9000/' + pattern + '?minimal',
       'hideSelectors': [
         'img[src*=lorempixel]'
       ],

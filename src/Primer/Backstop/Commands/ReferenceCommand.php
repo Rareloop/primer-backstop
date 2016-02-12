@@ -2,6 +2,7 @@
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Rareloop\Primer\Primer;
 
 use Symfony\Component\Finder\Finder;
@@ -12,7 +13,25 @@ class ReferenceCommand extends BackstopCommand
     {
         $this
             ->setName('backstop:reference')
-            ->setDescription('Create reference images for regressions tests');
+            ->setDescription('Create reference images for regressions tests')
+            ->addOption(
+                'elements',
+                'e',
+                InputOption::VALUE_NONE,
+                'Add elements to the list of reference images.'
+            )
+            ->addOption(
+                'components',
+                'c',
+                InputOption::VALUE_NONE,
+                'Add components to the list of reference images.'
+            )
+            ->addOption(
+                'templates',
+                't',
+                InputOption::VALUE_NONE,
+                'Add templates to the list of reference images.'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -25,16 +44,38 @@ class ReferenceCommand extends BackstopCommand
             $this->startServer($output);
 
             // Update the list of patterns to test
-            $finder = new Finder();
             $patterns = [];
 
             $sections = ['elements', 'components'];
 
+            $cliSections = [];
+
+            if ($input->getOption('elements')) {
+                $cliSections[] = 'elements';
+            }
+
+            if ($input->getOption('components')) {
+                $cliSections[] = 'components';
+            }
+
+            if ($input->getOption('templates')) {
+                $cliSections[] = 'templates';
+            }
+
+            // If any options have been provided on the CLI then use just these options
+            if (!empty($cliSections)) {
+                $sections = $cliSections;
+            }
+
+
             foreach ($sections as $section) {
-                $children = $finder->directories()->depth('== 1')->in(Primer::$PATTERN_PATH . '/' . $section);
+                $finder = new Finder();
+                $depth = $section === 'templates' ? '==0' : '==1';
+                $children = $finder->directories()->depth($depth)->in(Primer::$PATTERN_PATH . '/' . $section);
 
                 foreach ($children as $child) {
-                    $patterns[] = trim(str_replace(PRIMER::$PATTERN_PATH, '', $child->getRealPath()), '/');
+                    $prefix = $section === 'templates' ? '' : 'patterns/';
+                    $patterns[] = $prefix . trim(str_replace(PRIMER::$PATTERN_PATH, '', $child->getRealPath()), '/');
                 }
             }
 
