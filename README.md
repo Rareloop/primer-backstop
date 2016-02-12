@@ -77,6 +77,13 @@ php primer backstop:reference
 
 This creates reference images for all elements and components at each viewport size and stores them in `backstop/bitmaps_reference`. These images are the baseline images that future tests will be run against.
 
+By default reference images will be created for all your `elements` and `components`. You can change this by adding which sections you want to test to the CLI, e.g.
+
+````
+# Test templates and components but not elements
+php primer backstop:reference --templates --components
+````
+
 ### Run Test
 ````
 php primer backstop:test
