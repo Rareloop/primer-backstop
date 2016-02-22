@@ -13,18 +13,7 @@ sudo npm install -g casperjs
 *This module assumes you're using a Unix based system (e.g. Linux, Mac OS X). It hasn't been tested on Windows but almost certainly won't work without some tweaking!*
 
 ## Installation
-This module isn't currently on Packagist so you'll need to add a custom repository to your `composer.json`.
-
-````json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "git@gitlab.rareloop.com:php-packages/primer-backstop.git"
-    }
-]
-````
-
-Add the following to you `require` object:
+Add the following to your `composer.json` object:
 
 ````json
 "rareloop/primer-backstop": "dev-master"

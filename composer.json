@@ -1,6 +1,6 @@
 {
     "name": "rareloop/primer-backstop",
-    "description": "Regression testing for Primer",
+    "description": "Automated regression testing for Primer, using BackstopJS",
     "authors": [
         {
             "name": "Joe Lambert",
